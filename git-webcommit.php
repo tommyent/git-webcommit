@@ -960,7 +960,7 @@ HERE;
 			$strtitle = $title . ' ';
 
 return <<<HERE
-		<form method="POST">
+		<form method="POST" name="git-webcommit">
 		<h1>${strtitle}version control system</h1>
 		<div class="filename_div filelist_header"><span class="checkbox_span">&nbsp;</span><span class="staged_span">Staged</span><span class="state_span">State</span><span class="filename_span">Filename</span></div>
 		<article>
@@ -985,6 +985,8 @@ HERE;
 
 return <<<HERE
 		</article>
+		<a href="javascript:void();" onclick="javascript:checkAll('git-webcommit', true);">    <button type="button" class="checkall">Check All</button></a>
+		form<a href="javascript:void();" onclick="javascript:checkAll('git-webcommit', false);">    <button type="button" class="checkall">UnCheck All</button></a>
 		<input id="change_staged" type="submit" name="change_staged" value="change staged">
 		<input id="submit_commit" type="submit" name="commit" value="commit">
 		<input id="submit_refresh" type="submit" name="refresh" value="refresh">
@@ -1019,6 +1021,21 @@ HERE;
 
 	function html_footer () {
 return <<<HERE
+
+	<script language="javascript">
+function checkAll(formname, checktoggle)
+{
+  var checkboxes = new Array();
+  checkboxes = document[formname].getElementsByTagName('input');
+
+  for (var i=0; i<checkboxes.length; i++)  {
+    if (checkboxes[i].type == 'checkbox')   {
+      checkboxes[i].checked = checktoggle;
+    }
+  }
+}
+</script>
+
 </body></html>
 HERE;
 	}
